@@ -39,3 +39,27 @@ II. Misc
 ========
 
 --- replace with specific information about the meta-evb-ksz9477 layer ---
+Notes on using meta-evb-ksz9477
+
+Steps for Keith:
+1. Remove meta-atmel (modified) and re-check out
+  rm -rf meta-amtel
+  git clone git@github.com:linux4sam/meta-atmel.git
+  cd meta-atmel
+  git checkout -b kirkstone origin/kirkstone
+  cd -
+2. Checkout meta-evb-ksz9477
+  git clone git@github.com:jharoian-mchp/meta-evb-ksz9477.git
+  cd meta-evb-ksz-9477
+  git checkout -b kirkstone origin/kirkstone
+  cd -
+
+3. Set up build environment
+  cd poky
+  source oe-init-build-env <build directory>
+
+4. Enable meta-evb-ksz9477 layer
+  bitbake-layers add-layer <path to layer>/meta-evb-ksz9477
+
+5. Build
+  MACHINE=sama5d3-eds-sd bitbake microchip-headless-image
